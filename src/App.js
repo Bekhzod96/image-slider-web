@@ -1,8 +1,12 @@
 import React from 'react';
-import './App.css';
-
+import Images from './components/Images';
 function App() {
-  return <div className='App'>Here goes a bunch of images </div>;
+  return (
+    <div>
+      <h3 className='heading'>Image Slider</h3>
+      <Images />
+    </div>
+  );
 }
 
 export default App;
