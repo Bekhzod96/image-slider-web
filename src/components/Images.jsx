@@ -4,7 +4,7 @@ import images from '../assets/img/data';
 const Images = () => {
   const [container, setContainer] = React.useState({});
 
-  React.useEffect(() => {
+  React.useEffect((size) => {
     setContainer(document.querySelector('.container'));
     window.addEventListener('resize', size, false);
     console.log(images.length);
@@ -63,8 +63,8 @@ const Images = () => {
       className='container'
       onMouseUp={move}
       onTouchEnd={move}
-      onTouchStart={lock}
       onMouseDown={lock}
+      onTouchStart={lock}
       onMouseMove={drag}
       onTouchMove={drag}
     >
