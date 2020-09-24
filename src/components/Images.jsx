@@ -1,21 +1,31 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import images from '../assets/img/data';
 
 const Images = () => {
-  const [container, setContainer] = React.useState({});
+  const [width, setWidth] = useState(window.innerWidth),
+    imgRef = useRef(null),
+    item = images.length;
+  let i = 0,
+    x0 = null,
+    locked = false;
 
-  React.useEffect((size) => {
-    setContainer(document.querySelector('.container'));
-    window.addEventListener('resize', size, false);
-    console.log(images.length);
+  useEffect(() => {
+    console.log(width);
+    return () => '';
+  }, [width]);
+
+  useEffect(() => {
+    imgRef.current.style.setProperty('--n', item);
     return () => '';
   }, []);
 
-  const item = images.length;
-  let i = 0,
-    x0 = null,
-    locked = false,
-    width;
+  window.addEventListener(
+    'resize',
+    () => {
+      setWidth(window.innerWidth);
+    },
+    false
+  );
 
   const unify = (e) => {
     return e.changedTouches ? e.changedTouches[0] : e;
@@ -23,14 +33,14 @@ const Images = () => {
 
   const lock = (e) => {
     x0 = unify(e).clientX;
-    container.classList.toggle('smooth', !(locked = true));
+    imgRef.current.classList.toggle('smooth', !(locked = true));
   };
 
   const drag = (e) => {
     e.preventDefault();
 
     if (locked)
-      container.style.setProperty(
+      imgRef.current.style.setProperty(
         '--tx',
         `${Math.round(unify(e).clientX - x0)}px`
       );
@@ -43,21 +53,16 @@ const Images = () => {
         f = +((s * dx) / width).toFixed(2);
 
       if ((i > 0 || s < 0) && (i < item - 1 || s > 0) && f > 0.2) {
-        container.style.setProperty('--i', (i -= s));
+        imgRef.current.style.setProperty('--i', (i -= s));
         f = 1 - f;
       }
-
-      container.style.setProperty('--tx', '0px');
-      container.style.setProperty('--f', f);
-      container.classList.toggle('smooth', !(locked = false));
+      imgRef.current.style.setProperty('--tx', '0px');
+      imgRef.current.style.setProperty('--f', f);
+      imgRef.current.classList.toggle('smooth', !(locked = false));
       x0 = null;
     }
   };
 
-  const size = () => {
-    width = window.innerWidth;
-  };
-  size();
   return (
     <div
       className='container'
@@ -67,6 +72,7 @@ const Images = () => {
       onTouchStart={lock}
       onMouseMove={drag}
       onTouchMove={drag}
+      ref={imgRef}
     >
       {images.map((imgUrl, index) => (
         <img src={imgUrl} alt='Error' key={index} />
