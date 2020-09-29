@@ -37,6 +37,7 @@
 - webpack
 - Git
 
+
 ## How To Use
 
 To clone and run this application, you'll need [Git](https://git-scm.com) and [npm](https://nodejs.org/en/) installed on your computer. From your command line:
