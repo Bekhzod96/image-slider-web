@@ -82,8 +82,8 @@ const Images = () => {
 
 	return (
 		<div className="shadow">
-			<div className="controller" >
-				<img src={Left} alt="Left" height="30vw" onClick={handleButtonClick} id="left"/>
+			<div className="controller">
+				<img src={Left} alt="Left" onClick={handleButtonClick} id="left" />
 			</div>
 			<div className="slider-wrap">
 				<div
@@ -113,8 +113,8 @@ const Images = () => {
 					))}
 				</div>
 			</div>
-			<div className="controller" >
-				<img src={Right} alt="Right" height="30vw" onClick={handleButtonClick} id="right"/>
+			<div className="controller">
+				<img src={Right} alt="Right" onClick={handleButtonClick} id="right" />
 			</div>
 		</div>
 	);

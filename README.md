@@ -21,7 +21,13 @@
 
 ## Use Case
 
-> This Application build by using react-create-app. Only react native library has been used in order to create this application. Image slider could scale and added more images link to the image data file. In order to see next image swap, please!
+> This Application build by using react-create-app. Only react native library has been used in order to create this application. Image slider could scale and added more images link to the image data file. In order to see next image swap, click to button and choose indicator which imagae positioned.
+
+## Check Live view to test slider in diffrent device
+
+<a href="https://beka-image-slider.web.app">Live View - Image Clider</a>
+
+<img src="./src/assets/img/image-slider.jpg"></a>
 
 ## Built With
 
@@ -30,13 +36,12 @@
 
 ## Tools
 
-- npm
+- JavaScript
 - React
 - Sass
 - Visual Studio Code
 - webpack
 - Git
-
 
 ## How To Use
 
@@ -54,6 +59,20 @@ $ npm i
 
 # To install all dependency
 $ npm start
+
+```
+
+## File Structure
+
+```bash
+# Entry point to the application
+$ ./src/App.js
+
+# Image Layout in
+$ ./src/App.js
+
+# All Components
+$ ./src/components
 
 ```
 
