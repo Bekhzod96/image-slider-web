@@ -21,7 +21,7 @@
 
 ## Use Case
 
-> This Application build by using react-create-app. Only react native library has been used in order to create this application. Image slider could scale and added more images link to the image data file. In order to see next image swap, click to button and choose indicator which imagae positioned.
+> This Application build by scratch using webpack. Only react native library has been used in order to create this application. Image slider could scale and added more images link to the image data file. In order to see next image swap, click to button and choose indicator which imagae positioned.
 
 ## Check Live view to test slider in diffrent device
 
@@ -55,7 +55,7 @@ $ git clone https://github.com/Bekhzod96/image-slider.git
 $ cd image-slider
 
 # To install all dependency
-$ npm i
+$ npm install
 
 # To install all dependency
 $ npm start

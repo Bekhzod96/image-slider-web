@@ -1,0 +1,22 @@
+image: rambabusaravanan/firebase
+
+before_script:
+  - CI=false
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - npm install
+    - npm run build
+
+deploy-development:
+  stage: deploy
+  only:
+    - master
+  script:
+    - firebase use beka-image-slider --token $FIREBASE_TOKEN
+    - firebase deploy --only hosting:beka-image-slider  -m "Pipline $CI_PIPELINE_ID Build $CI_BUILD_ID" --token $FIREBASE_TOKEN
