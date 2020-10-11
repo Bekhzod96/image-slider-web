@@ -29,7 +29,7 @@ body {
   padding: 0 1vw;
   box-shadow: inset 0 0 10px #000000;
   .controller {
-    img{
+    img {
       height: 3vw;
     }
     margin: auto 1em;
@@ -39,7 +39,7 @@ body {
     &:hover {
       cursor: pointer;
     }
-    &:active{
+    &:active {
       transform: scale(1.2s);
       background-color: white;
       border: 0.5px solid grey;
@@ -53,6 +53,7 @@ body {
     overflow: hidden;
     .container {
       --n: 1;
+      --i: 2;
       display: flex;
       align-items: center;
       overflow-y: hidden;
