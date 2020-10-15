@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 process.env.NODE_ENV = 'development';
 
@@ -9,23 +10,15 @@ module.exports = {
 	devtool: 'cheap-module-source-map',
 	entry: './src/index',
 	output: {
-		path: path.resolve(__dirname, 'build'),
-		publicPath: '/',
-		filename: 'bundle.js',
-	},
-	devServer: {
-		stats: 'minimal',
-		overlay: true,
-		historyApiFallback: true,
-		disableHostCheck: true,
-		headers: { 'Access-Control-Allow-Origin': '*' },
-		https: false,
+		path: path.resolve(__dirname, './build'),
+		filename: 'index.js',
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: 'src/index.html',
-			favicon: 'src/favicon.ico',
+			template: './src/index.html',
+			favicon: './src/favicon.ico',
 		}),
+		new CleanWebpackPlugin(),
 	],
 	module: {
 		rules: [

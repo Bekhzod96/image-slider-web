@@ -4,7 +4,7 @@ import Images from './components/Images.jsx';
 function App() {
 	return (
 		<div>
-			<h3 className="heading">Image Slider</h3>
+			<h3 className="heading">Image Slider </h3>
 			<Images />
 		</div>
 	);
