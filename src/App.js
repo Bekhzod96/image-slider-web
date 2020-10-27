@@ -1,13 +1,13 @@
 // eslint-disable-next-line import/no-unresolved
 import React from 'react';
-import Images from './components/Images.jsx';
+import Slider from './components/Slider.jsx';
 function App() {
-	return (
-		<div>
-			<h3 className="heading">Image Slider </h3>
-			<Images />
-		</div>
-	);
+  return (
+    <div className="app">
+      <h3 className="heading">Image Slider </h3>
+      <Slider />
+    </div>
+  );
 }
 
 export default App;

@@ -1,0 +1,49 @@
+
+
+$color-primary: #55c57a;
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
+
+$color-secondary-light: #ffb900;
+$color-secondary-dark: #ff7730;
+
+$color-tertiary-light: #2998ff;
+$color-tertiary-dark: #5643fa;
+
+$color-grey-light-1: #f7f7f7;
+$color-grey-light-2: #eee;
+
+$color-grey-dark: #777;
+$color-grey-dark-2: #999;
+$color-grey-dark-3: #333;
+
+$color-white: #fff;
+$color-black: #000;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.app{
+
+  font-family: 'Dosis', sans-serif;
+  background-image: linear-gradient(
+    to right bottom,
+    rgba($color-tertiary-light, 0.8),
+    rgba($color-tertiary-dark, 0.8));
+    min-height: 100vh;
+    height: 100%;
+}
+
+.heading {
+  font-size: 3rem;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 1rem;
+  color: $color-white;
+  backface-visibility:hidden ;
+  text-shadow: 2px 5px 2rem rgba($color-black, .8);
+}
