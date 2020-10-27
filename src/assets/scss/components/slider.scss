@@ -1,5 +1,5 @@
 .smooth {
-  transition: transform calc(var(--f, 1) * 0.3s) ease-out;
+  transition: transform  0.4s ease-out;
 }
 
 .slider {
@@ -8,7 +8,11 @@
   justify-content: space-between;
   margin-top: 4rem;
   padding: 0 1vw;
-  height: 50vh;
+  height: 60vh;
+  @media only screen and (min-width: 130em)  { 
+    height: 80vh;
+   }
+ 
   width: 100%;
   &__controller {
     img {
@@ -48,7 +52,7 @@
     width: 100%;
     width: calc(var(--childNodes) * 100%);
     transform: translate(
-      calc(var(--tx, 0px) + var(--i, 0) / var(--childNodes) * -100%)
+      calc(var(--touchStartX, 0px) + var(--currentNodeId, 0) / var(--childNodes) * -100%)
     );
   }
   &__slide {

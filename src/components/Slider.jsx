@@ -1,42 +1,42 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import Left from '../assets/img/left.svg';
 import Right from '../assets/img/right.svg';
 import Slides from './Slides.jsx';
 
 const Images = () => {
-  const [width, setWidth] = useState(window.innerWidth),
-    imgRef = useRef(null),
-    childNodes = () => document.querySelector('.slider__slides').childNodes.length;
-  let i = 0,
-    touchstartx = null,
+  const imgRef = useRef(null),
+    childNodes = () => document.querySelector('.slider__slides').childNodes;
+  let currentNodeId = 0,
+    touchStartX = null,
     locked = false;
 
+  //On laod Count childNodes set Css properity
   useEffect(() => {
-    imgRef.current.style.setProperty('--childNodes', childNodes());
+    imgRef.current.style.setProperty('--childNodes', childNodes().length);
     return () => '';
   }, []);
 
   window.addEventListener(
     'resize',
     () => {
-      setWidth(window.innerWidth);
+      location.reload()
     },
     false
   );
 
+  // convert mobile and Computer changedTouches properity in one format
   const unify = (e) => {
     return e.changedTouches ? e.changedTouches[0] : e;
   };
 
-  const animate = (f = 0.8) => {
-    imgRef.current.style.setProperty('--tx', '0px');
-    imgRef.current.style.setProperty('--f', f);
+  const animate = () => {
+    imgRef.current.style.setProperty('--touchStartX', '0px');
     imgRef.current.classList.toggle('smooth', !(locked = false));
-    touchstartx = null;
+    touchStartX = null;
   };
 
   const lock = (e) => {
-    touchstartx = unify(e).clientX;
+    touchStartX = unify(e).clientX;
     imgRef.current.classList.toggle('smooth', !(locked = true));
   };
 
@@ -45,40 +45,38 @@ const Images = () => {
 
     if (locked)
       imgRef.current.style.setProperty(
-        '--tx',
-        `${unify(e).clientX - touchstartx}px`
+        '--touchStartX',
+        `${unify(e).clientX - touchStartX}px`
       );
   };
 
   const move = (e) => {
     if (locked) {
-      let dx = unify(e).clientX - touchstartx,
-        s = Math.sign(dx),
-        f = +((s * dx) / width).toFixed(2);
+      let dx = unify(e).clientX - touchStartX,
+        s = Math.sign(dx);
 
-      if ((i > 0 || s < 0) && (i < childNodes() - 1 || s > 0) && f > 0.2) {
-        imgRef.current.style.setProperty('--i', (i -= s));
-        f = 1 - f;
+      if ((currentNodeId > 0 || s < 0) && (currentNodeId < childNodes().length - 1 || s > 0) ) {
+        imgRef.current.style.setProperty('--currentNodeId', (currentNodeId -= s));
       }
-      animate(f);
+      animate();
     }
   };
 
   const handleButtonClick = (e) => {
     let direction = 0;
-    if (e.target.id === 'right' && i < childNodes() - 1) direction += 1;
+    if (e.target.id === 'right' && currentNodeId < childNodes().length - 1) direction += 1;
 
-    if (e.target.id === 'left' && i > 0) direction -= 1;
+    if (e.target.id === 'left' && currentNodeId > 0) direction -= 1;
 
-    imgRef.current.style.setProperty('--i', (i += direction));
+    imgRef.current.style.setProperty('--currentNodeId', (currentNodeId += direction));
     animate();
   };
 
-  const handleIndicatorClick = (e) => {
-    const target = parseInt(e.target.id);
-    imgRef.current.style.setProperty('--i', target);
-    animate();
-  };
+  // const handleIndicatorClick = (e) => {
+  //   currentNodeId = parseInt(e.target.id);
+  //   imgRef.current.style.setProperty('--currentNodeId', currentNodeId);
+  //   animate();
+  // };
 
   return (
     <div className="slider">
@@ -100,7 +98,7 @@ const Images = () => {
           <Slides />
         </div>
 
-        <div className="slider__indicator">
+        {/* <div className="slider__indicator">
           <div
             className="slider__indicator-dot"
             onClick={handleIndicatorClick}
@@ -113,7 +111,7 @@ const Images = () => {
             key="2"
             id="2"
           ></div>
-        </div>
+        </div> */}
       </div>
       <div className="slider__controller">
         <img src={Right} alt="Right" onClick={handleButtonClick} id="right" />
